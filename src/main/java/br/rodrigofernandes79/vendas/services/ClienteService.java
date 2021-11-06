@@ -60,11 +60,11 @@ public class ClienteService {
 				
 				return obj;
 				})
-				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
-						"Id "+id+ " não foi encontrado.")); 
-		
+				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Id: "
+				+id+ " não foi encontrado."));
 	}
 
+	
 
 
 	
