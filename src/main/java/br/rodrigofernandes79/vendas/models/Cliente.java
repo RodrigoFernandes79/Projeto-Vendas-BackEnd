@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.br.CPF;
@@ -32,11 +32,11 @@ public class Cliente {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotEmpty
+	@NotBlank(message="Campo não informado!")
 	@Column(nullable = false,length = 150)
 	private String nome;
-	@NotNull
-	@CPF
+	@NotBlank(message="Campo não informado!")
+	@CPF(message= "Campo inválido!Inserir um Cpf Válido!")
 	@Column(nullable = false, length = 11)
 	private String cpf;
 	@Column(name="data_cadastro")

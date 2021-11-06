@@ -22,7 +22,7 @@ public class ClienteService {
 
 	
 
-	public Cliente criarCliente(Cliente cliente) {
+	public Cliente criarCliente( Cliente cliente) {
 		Cliente obj = repository.save(cliente);
 		return obj;
 	}
