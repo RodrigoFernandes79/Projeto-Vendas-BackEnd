@@ -11,8 +11,8 @@ import org.springframework.web.server.ResponseStatusException;
 import br.rodrigofernandes79.vendas.models.Cliente;
 import br.rodrigofernandes79.vendas.repositories.ClienteRepository;
 
-import lombok.Getter;
-import lombok.Setter;
+
+
 
 @Service
 public class ClienteService {
@@ -39,6 +39,30 @@ public class ClienteService {
 	public Cliente listarPorId(Long id) {
 		Optional<Cliente> obj = repository.findById(id);
 		return obj.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+	}
+
+
+
+	public void deletar(Long id){
+		repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Id: "
+				+id+ " não foi encontrado."));
+		repository.deleteById(id);
+	}
+
+
+
+	public Cliente atualizarCliente(Long id, Cliente cliente) {
+		  return repository.findById(id)
+				.map(record ->{
+				record.setNome(cliente.getNome());
+				record.setCpf(cliente.getCpf());
+				Cliente obj =repository.save(record);
+				
+				return obj;
+				})
+				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+						"Id "+id+ " não foi encontrado.")); 
+		
 	}
 
 

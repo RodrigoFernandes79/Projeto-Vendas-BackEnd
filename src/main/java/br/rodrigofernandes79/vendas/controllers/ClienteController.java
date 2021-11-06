@@ -5,15 +5,20 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.rodrigofernandes79.vendas.models.Cliente;
 import br.rodrigofernandes79.vendas.services.ClienteService;
+
 
 
 @RestController
@@ -41,6 +46,21 @@ public class ClienteController {
 	public ResponseEntity<Cliente> listarPorId(@PathVariable Long id) {
 		Cliente obj = service.listarPorId(id);
 		return ResponseEntity.ok().body(obj);
+		
+	}
+	
+	@DeleteMapping("/{id}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deletar(@PathVariable Long id){
+			service.deletar(id);
+	
+	}
+	
+	@PutMapping("/{id}")
+	
+	public ResponseEntity<Cliente> atualizarCliente(@PathVariable Long id,@RequestBody Cliente cliente ){
+		Cliente obj = service.atualizarCliente(id,cliente);
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).body(obj);
 		
 	}
 
