@@ -1,6 +1,7 @@
 package br.rodrigofernandes79.vendas.models;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,7 +21,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Servico {
+public class ServicoPrestado {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,5 +33,8 @@ public class Servico {
 	private Cliente cliente;
 	@Column
 	private BigDecimal preco;
+	
+	@Column
+	private LocalDate data;
 
 }
